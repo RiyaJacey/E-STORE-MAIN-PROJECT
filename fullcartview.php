@@ -11,26 +11,7 @@ if(!isset($_SESSION['name'])){
     
 $user_id = $_SESSION['loginId'];
 
-// $id=$_REQUEST['pid'];
-// $targetDir= "images2/";
-// $sql=mysqli_query($conn,"select * from tbl_productdetail where pid = $id");
-// $img=mysqli_fetch_assoc($sql); 
 
-// $pimage=addslashes(@file_get_contents($img['pimage']));
-
-// $targetFilePath = $targetDir . $pimage;
-
-// move_uploaded_file($_FILES["pimage"]["tmp_name"],$targetFilePath);
-
-// mysqli_query($conn,"insert into tbl_cart ( `cid`,`cimage`, `cname`, `cbrand`, `ccolour`, `cram`, `cstorage`, `cprocessor`, `cdesp`, `cprice`, `coffer`, `ctprice`) select `pid`,`pimage`, `pname`, `pbrand`, `pcolour`, `pram`, `pstorage`, `processor`, `desp`, `price`, `offer`, `tprice` from tbl_productdetail where pid='$id'");
-
-
-// $targetDir = "../login/images2/";
-// $targetFilePath = $targetDir . $pimage;
-// move_uploaded_file($_FILES["pimage"]["tmp_name"],$targetFilePath);
-// mysqli_query($conn,"SELECT `tbl_login`.loginId,`tbl_productdetail`.pid,`tbl_laptop`.lid where loginid='$'");
-// mysqli_query($conn,"insert into `tbl_cart1`(`loginId`, `pid`) select `loginId` ,`pid` from tbl_productdetail where pid='$id'");
-// mysqli_query($conn,"insert into `tbl_cart1`(`loginId`, `pid`) values('$user_id','$id')");?>
 
 ?>
 <script>
@@ -82,8 +63,10 @@ include "DBConnection.php";
     });   
 });
 </script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
-<body> 
+<body style="background-color :#00FFFF "> 
 <form action="#" method="POST">
 <input type="hidden"name="id"value="<?= $row['pid']?>">
 <div class="logo">
@@ -115,6 +98,8 @@ include "DBConnection.php";
    </div>
    <div class="cart-bottom">
      <div class="table">
+     <input type="hidden" id="name1" value="<?php echo $name; ?>">
+
         <table>
             <thead>
               <tr  class="main-heading">    
@@ -124,43 +109,100 @@ include "DBConnection.php";
 
                     <th class="long-txt">Brand</th>
                     
-                     <th class="long-txt">Total Price</th>  
+                     <th class="long-txt">Total Price</th>
+                     <th class="long-txt">qnty</th>  
+                     <th class="long-txt"> final price</th>
+                     <th class="long-txt">delete</th>
 
              </tr>
                         
                     </thead>
                     <tbody>
-                        <?php
-                            
+                    <?php
+$totalPriceSum = 0;
+$qry = $conn->query("SELECT p2.lid,p2.limage,p2.lname ,p2.ltprice,p2.lbrand FROM tbl_laptop p2 JOIN tbl_lapcart c2 ON c2.lid=p2.lid WHERE c2.loginId=$user_id UNION SELECT p1.pid,p1.pimage,p1.pname,p1.price,p1.pbrand FROM tbl_productdetail p1 JOIN tbl_cart1 c1 ON c1.pid=p1.pid WHERE c1.loginId=$user_id");
+while ($row = $qry->fetch_assoc()): 
+    $price = $row['ltprice'];
+?>
+    <tr>
+        <td class="text-right"><img src="images2/<?php echo $row['limage'] ?>" style="width:150px; height:150px;"></td>
+        <td class="text-right"><?php echo $row['lname'] ?></td>
+        <td class="text-right"><?php echo $row['lbrand'] ?></td>
+        <td class="text-right"><?php echo $row['ltprice'] ?></td>
+        <td class="text-right">
+            <input type="number" name="count" id="count_<?php echo $row['lid'] ?>" onmouseout="fprice(<?php echo $row['ltprice'] ?>, 'count_<?php echo $row['lid'] ?>', 'total_<?php echo $row['lid'] ?>')">
+        </td>
+        <td class="text-right">
+            <input type="number" name="total" id="total_<?php echo $row['lid'] ?>" readonly>
+        </td>
+        
+        <td class="text-right">
+            <?php echo '<p><a href="cartdelete.php?id='.$row['lid'].'">Delete</a></p>'; ?>
+        </td>
+</tr>
+<?php endwhile; ?>
+<tr>
+<td>
+<label for="sub"><b>SubTotal : $</b>
+<input type="number" name="sub" id="sub" value="<?php echo $totalPriceSum; ?>" ></label></td>
+<td><input type="button" id="rzp-button1"name="btn"value="pay now"class="btn btn-primary" onclick="pay_now()"/>
+</td>
+</tr>
 
-                            // $qry = $conn->query("SELECT * FROM tbl_cart1 where loginId=$user_id");
-                            // $qry = $conn->query("SELECT * FROM tbl_productdetail p1 ,tbl_cart1 c1 where c1.pid=p1.pid,loginId=$user_id");
-                           // $qry = $conn->query("SELECT * FROM tbl_laptop p1 JOIN tbl_lapcart c1 ON c1.lid=p1.lid WHERE c1.loginId=$user_id union SELECT * FROM tbl_productdetail p2 JOIN tbl_cart c2 ON c2.pid=p2.pid WHERE c2.loginId=$user_id");
-                            $qry = $conn->query("SELECT * FROM tbl_laptop p1 JOIN tbl_lapcart c1 JOIN tbl_productdetail p2 JOIN tbl_cart1  ON c1.lid=p1.lid");
-                            while($row = $qry->fetch_assoc()):
-                                $a= 'images2/'.$row["limage"];
-                                
-                                //$booked = $conn->query("SELECT * FROM booked_flight where id = ".$row['id'])->num_rows;
+<script>
+function fprice(price, countId, totalId) {
+    var count = Number(document.getElementById(countId).value);
+    var total = count * price;
+    document.getElementById(totalId).value = total.toFixed(2);
+    
+    // Get the value of the total for the current row
+    var totalPriceSum = 0;
+    var allTotalInputs = document.getElementsByName("total");
+    for (var i = 0; i < allTotalInputs.length; i++) {
+        var rowTotal = Number(allTotalInputs[i].value);
+        if (!isNaN(rowTotal)) {
+            totalPriceSum += rowTotal;
+        }
+    }
+    document.getElementById("sub").value = totalPriceSum.toFixed(2);
+}
 
-                         ?>
-                         <tr>
-                            
-                            
-                            <td class="text-right">
-                            <img src="<?php echo $a ?> " style="width:150px; height:150px;"></td>
-                             <td class="text-right">
-                             <?php echo $row['lname'] ?></td>
-                             <td class="text-right">
-                             <?php echo $row['lbrand'] ?></td>
-                             <td class="text-right">
-                             <?php echo $row['ltprice'] ?></td>
-                             
-                             
-                            
+function pay_now(){
+		var name = jQuery('#name1').val();
+		console.log(name);
+		
+        var amount=document.getElementById("sub").value;
+        var options =  {
+            "key": "rzp_test_zigWqqvftHFAgY", // Enter the Key ID generated from the Dashboard
+            "amount": amount*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Art Gallery",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "handler":function(response){
+              
+               jQuery.ajax({
+                   type:"POST",
+                   url: "payment_process.php",
+                   data:"payment_id="+response.razorpay_payment_id+"&amount="+amount+"&name="+name,
+                   success:function(result){
+                       window,location.href="thankyou.php";
+                   }
+               });
+              
+      }
+        
+    
+};
+var rzp1 = new Razorpay(options);
 
-                        <?php endwhile; ?>
+    rzp1.open();
+    
+    }
+</script>
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>
