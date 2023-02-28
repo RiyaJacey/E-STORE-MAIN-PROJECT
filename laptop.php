@@ -217,7 +217,7 @@ $row = mysqli_fetch_assoc($result);
 								// 	while($row = mysqli_fetch_assoc($result)) {}}}
 
 ?>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
+								<button class="btn my-2 my-sm-0" type="submit" name="search">Search</button>
 							</form>
 						</div>
 						<!-- //search -->
@@ -241,15 +241,10 @@ $row = mysqli_fetch_assoc($result);
 					<form action="#" method="post">
 						<select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="">
 							<option value="">All Categories</option>
-							<option value="Televisions">Televisions</option>
-							<option value="Headphones">Headphones</option>
-							<option value="Computers">Computers</option>
-							<option value="Appliances">Appliances</option>
-							<option value="Mobiles">Mobiles</option>
-							<option value="Fruits &amp; Vegetables">Tv &amp; Video</option>
-							<option value="iPad & Tablets">iPad & Tablets</option>
-							<option value="Cameras & Camcorders">Cameras & Camcorders</option>
-							<option value="Home Audio & Theater">Home Audio & Theater</option>
+							<option value="Dell">Dell</option>
+							<option value="Samsung">Samsung</option>
+							<option value="Asus">Asus</option>
+							
 						</select>
 					</form>
 				</div>
@@ -482,15 +477,18 @@ $row = mysqli_fetch_assoc($result);
 							if(isset($_POST['search']))
 							{
 								$searchTerm = mysqli_real_escape_string($conn, $_POST['my_input']); // sanitize the input
-								 $sql = "SELECT * FROM tbl_laptop WHERE name LIKE '%$searchTerm%'";
+								 $sql = "SELECT * FROM tbl_laptop WHERE lname LIKE '%$searchTerm%'";
 								 $result = mysqli_query($conn, $sql);
 							}
-if(!isset($_POST['search']))	
+else	
 {
 $sel_query="SELECT * from tbl_laptop";
 
 $result = mysqli_query($conn,$sel_query);
 }
+if ($result === false) {
+    echo "Error: " . mysqli_error($conn);
+} 
 while($row = mysqli_fetch_assoc($result)) {
 	if($row['status']==0)
 	{
@@ -502,7 +500,7 @@ while($row = mysqli_fetch_assoc($result)) {
                                           <img src="<?php echo $a ?> " style="width: 150px; height:250px;">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="single.html" class="link-product-add-cart">Quick View</a>
+													<a href="../web/single.html" class="link-product-add-cart">Quick View</a>
 												</div>
 											</div>
 										</div>
@@ -612,155 +610,7 @@ while($row = mysqli_fetch_assoc($result)) {
 							</div>
 						</div>
 						<!-- ram -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Ram</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Less than 512 MB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">512 MB - 1 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">1 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">2 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">3 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">5 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">6 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">6 GB & Above</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //ram -->
-						<!-- price -->
-						<div class="range border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Price</h3>
-							<div class="w3l-range">
-								<ul>
-									<li>
-										<a href="#">Under $1,000</a>
-									</li>
-									<li class="my-1">
-										<a href="#">$1,000 - $5,000</a>
-									</li>
-									<li>
-										<a href="#">$5,000 - $10,000</a>
-									</li>
-									<li class="my-1">
-										<a href="#">$10,000 - $20,000</a>
-									</li>
-									<li>
-										<a href="#">$20,000 $30,000</a>
-									</li>
-									<li class="mt-1">
-										<a href="#">Over $30,000</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!-- //price -->
-						<!-- discounts -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Discount</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">5% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">10% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">20% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">30% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">50% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">60% or More</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //discounts -->
-						<!-- offers -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Offers</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Exchange Offer</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">No Cost EMI</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Special Price</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //offers -->
-						<!-- delivery -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Cash On Delivery</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Eligible for Cash On Delivery</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //delivery -->
-						<!-- arrivals -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">New Arrivals</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Last 30 days</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Last 90 days</span>
-								</li>
-							</ul>
-						</div>
-						<div class="left-side py-2">
-							<h3 class="agileits-sear-head mb-3">Availability</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Exclude Out of Stock</span>
-								</li>
-							</ul>
-						</div>
+						
 						<!-- //arrivals -->
 					</div>
 					<!-- //product right -->
