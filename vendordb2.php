@@ -16,7 +16,7 @@ $statusMsg = '';
 $targetDir = "images2/";
 if(isset($_POST['submit']))
 { 
-$limage=$_FILES["limage"]["name"];
+
 $lname = $_POST['lname'];
 $lbrand = $_POST['lbrand'];
 $lcolour = $_POST['lcolour'];
@@ -30,10 +30,27 @@ $ldesp= $_POST['ldesp'];
 $lprice = $_POST['lprice'];
 $loffer = $_POST['loffer'];
 $ltprice = $_POST['ltprice'];
-$targetFilePath = $targetDir . $limage;
+//$limage1=$_FILES["limage"]["name"];
+$query = mysqli_query($conn,"INSERT INTO tbl_laptop(`lname`, `lbrand`, `lcolour`, `lram`, `Harddisk`, `lprocessor`, `screensize`, `os`, `warranty`, `ldesp`, `lprice`, `loffer`, `ltprice`) VALUES ('$lname','$lbrand','$lcolour','$lram','$Harddisk','$lprocessor','$screensize','$os','$warranty','$ldesp','$lprice','$loffer','$ltprice')");
+$query1 = mysqli_query($conn,"SELECT * from tbl_laptop WHERE lname='".$lname."'");
+while($row=mysqli_fetch_array($query1))
+{
+$a=$row['lid'];
 
-move_uploaded_file($_FILES["limage"]["tmp_name"],$targetFilePath);
-  $query = mysqli_query($conn,"INSERT INTO tbl_laptop(`limage`, `lname`, `lbrand`, `lcolour`, `lram`, `Harddisk`, `lprocessor`, `screensize`, `os`, `warranty`, `ldesp`, `lprice`, `loffer`, `ltprice`) VALUES ('$limage','$lname','$lbrand','$lcolour','$lram','$Harddisk','$lprocessor','$screensize','$os','$warranty','$ldesp','$lprice','$loffer','$ltprice')");
+// $targetFilePath = $targetDir . $limage;
+// move_uploaded_file($_FILES["limage"]["tmp_name"],$targetFilePath);
+$limages = $_FILES["limage"]["name"];
+foreach($limages as $key=>$value){
+   $limage = $limages[$key];
+   $limage2=$limages[0];
+   $targetFilePath = $targetDir . $limage;
+   move_uploaded_file($_FILES["limage"]["tmp_name"][$key], $targetFilePath);
+   $query = mysqli_query($conn,"INSERT INTO tbl_sublaptop(`lapimage`, `lid`) VALUES ('$limage','$a')");
+   
+}
+$query = mysqli_query($conn, "UPDATE tbl_laptop SET `limage`='$limage2' WHERE lid='$a'");
+
+}
   //$query1 = mysqli_query($conn,"SELECT regId from tbl_registration WHERE name='".$name."'");
 // if($query1===FALSE)
 // {
@@ -161,7 +178,7 @@ else{
         <tr><td>
         <div class="form-check">
         <label for="limage"><b>Upload image here</b></label></td><td>
-        <input type="file" name="limage" id="fileUpload">
+        <input type="file" name="limage[]" id="fileUpload" multiple>
                <script type="text/javascript">
                  function getFilePath(){
                    $('input[type=file]').change(function () {

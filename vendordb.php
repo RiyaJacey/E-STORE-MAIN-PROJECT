@@ -13,6 +13,7 @@ $statusMsg = '';
 
 // File upload path
 $targetDir = "images1/";
+$targetDir2="images2/";//for full cart view
 $user_id = $_SESSION['loginId'];
 
 if(isset($_POST['submit']))
@@ -29,12 +30,14 @@ $price = $_POST['price'];
 $offer = $_POST['offer'];
 $tprice = $_POST['tprice'];
 $targetFilePath = $targetDir . $pimage;
+$targetFilePath2 = $targetDir2 . $pimage;//for full cart view
 
 
 
 
 
 move_uploaded_file($_FILES["pimage"]["tmp_name"],$targetFilePath);
+copy($targetDir.$pimage,$targetFilePath2);
 
   $query = mysqli_query($conn,"INSERT INTO tbl_productdetail(loginId,pimage,pname,pbrand,pcolour,pram,pstorage,processor,desp,price,offer,tprice) VALUES('$user_id','$pimage','$pname','$pbrand','$pcolour', '$pram','$pstorage','$processor', '$desp','$price','$offer','$tprice')");
   
@@ -202,15 +205,19 @@ else{
       <tr><td>
         
       <div class="form-check">
-        <label for="pbrand"><b>Brand</b></label></td><td>
-        <!-- <input type="text" name="pbrand"> -->
-        <select name="pbrand">
+    <label for="pbrand"><b>Brand</b></label></td><td>
+    <select name="pbrand">
         <option value="">Choose An Option</option>
-          <option value="samsung">Samsung</option>
-          <option value="lenovo">Lenovo</option>
-          <option value="oneplus">OnePlus</option>
-        </select>
-          </div>
+        <?php
+            $query=mysqli_query($conn,"select * from tbl_phonecategory ");
+            while($row=mysqli_fetch_array($query))
+            {
+                // Use the pcat_name column value as the option value
+                echo '<option value="' . $row['pcat_name'] . '">' . $row['pcat_name'] . '</option>';
+            }
+        ?>
+    </select>
+</div>
     </td></tr>
       <tr><td>
       <div class="form-check">
