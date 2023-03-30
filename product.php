@@ -53,42 +53,7 @@ include "DBConnection.php";
 <body>
 
 	<!-- top-header -->
-	<div class="agile-main-top">
-		<div class="container-fluid">
-			<div class="row main-top-w3l py-2">
-				<div class="col-lg-4 header-most-top">
-					<p class="text-white text-lg-left text-center">Offer Zone Top Deals & Discounts
-						<i class="fas fa-shopping-cart ml-1"></i>
-					</p>
-				</div>
-				<div class="col-lg-8 header-right mt-lg-0 mt-2">
-					<!-- header lists -->
-					<ul>
-						<li class="text-center border-right text-white">
-							<a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">
-								<i class="fas fa-map-marker mr-2"></i>Select Location</a>
-						</li>
-						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-								<i class="fas fa-truck mr-2"></i>Track Order</a>
-						</li>
-						<li class="text-center border-right text-white">
-							<i class="fas fa-phone mr-2"></i> 001 234 5678
-						</li>
-						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-								<i class="fas fa-sign-in-alt mr-2"></i> Log In </a>
-						</li>
-						<li class="text-center text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
-								<i class="fas fa-sign-out-alt mr-2"></i>Register </a>
-						</li>
-					</ul>
-					<!-- //header lists -->
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 	<!-- Button trigger modal(select-location) -->
 	
@@ -217,14 +182,15 @@ $row = mysqli_fetch_assoc($result);
 								// 	while($row = mysqli_fetch_assoc($result)) {}}}
 
 ?>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
+								<button class="btn my-2 my-sm-0" type="submit" name="search">Search</button>
 							</form>
 						</div>
 						<!-- //search -->
 						<!-- cart details -->
 						<!-- <button><a href="../login/vcart.php?pid=<php echo $row['pid']?>"><b><i>MY CART</i></b></a></button> -->
 
-						<button><a href="../login/vcart.php">view cart</a></button>
+						<button><a href="../login/vcart.php">view cart</a></button>&nbsp;&nbsp;
+						<button><a href="userindex.php">back</a></button>
 						<!-- //cart details -->
 					</div>
 				</div>
@@ -234,207 +200,7 @@ $row = mysqli_fetch_assoc($result);
 	<!-- shop locator (popup) -->
 	<!-- //header-bottom -->
 	<!-- navigation -->
-	<div class="navbar-inner">
-		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="agileits-navi_search">
-					<form action="#" method="post">
-						<select id="agileinfo-nav_search" name="agileinfo_search" class="border" required="">
-							<option value="">All Categories</option>
-							<option value="Televisions">Televisions</option>
-							<option value="Headphones">Headphones</option>
-							<option value="Computers">Computers</option>
-							<option value="Appliances">Appliances</option>
-							<option value="Mobiles">Mobiles</option>
-							<option value="Fruits &amp; Vegetables">Tv &amp; Video</option>
-							<option value="iPad & Tablets">iPad & Tablets</option>
-							<option value="Cameras & Camcorders">Cameras & Camcorders</option>
-							<option value="Home Audio & Theater">Home Audio & Theater</option>
-						</select>
-					</form>
-				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-				    aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto text-center mr-xl-5">
-						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="index.html">Home
-								<span class="sr-only">(current)</span>
-							</a>
-						</li>
-						<li class="nav-item dropdown active mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Electronics
-							</a>
-							<div class="dropdown-menu">
-								<div class="agile_inner_drop_nav_info p-4">
-									<h5 class="mb-3">Mobiles, Computers</h5>
-									<div class="row">
-										<div class="col-sm-6 multi-gd-img">
-											<ul class="multi-column-dropdown">
-												<li>
-													<a href="product.html">All Mobile Phones</a>
-												</li>
-												<li>
-													<a href="product.html">All Mobile Accessories</a>
-												</li>
-												<li>
-													<a href="product.html">Cases & Covers</a>
-												</li>
-												<li>
-													<a href="product.html">Screen Protectors</a>
-												</li>
-												<li>
-													<a href="product.html">Power Banks</a>
-												</li>
-												<li>
-													<a href="product.html">All Certified Refurbished</a>
-												</li>
-												<li>
-													<a href="product.html">Tablets</a>
-												</li>
-												<li>
-													<a href="product.html">Wearable Devices</a>
-												</li>
-												<li>
-													<a href="product.html">Smart Home</a>
-												</li>
-											</ul>
-										</div>
-										<div class="col-sm-6 multi-gd-img">
-											<ul class="multi-column-dropdown">
-												<li>
-													<a href="product.html">Laptops</a>
-												</li>
-												<li>
-													<a href="product.html">Drives & Storage</a>
-												</li>
-												<li>
-													<a href="product.html">Printers & Ink</a>
-												</li>
-												<li>
-													<a href="product.html">Networking Devices</a>
-												</li>
-												<li>
-													<a href="product.html">Computer Accessories</a>
-												</li>
-												<li>
-													<a href="product.html">Game Zone</a>
-												</li>
-												<li>
-													<a href="product.html">Software</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Appliances
-							</a>
-							<div class="dropdown-menu">
-								<div class="agile_inner_drop_nav_info p-4">
-									<h5 class="mb-3">TV, Appliances, Electronics</h5>
-									<div class="row">
-										<div class="col-sm-6 multi-gd-img">
-											<ul class="multi-column-dropdown">
-												<li>
-													<a href="product2.html">Televisions</a>
-												</li>
-												<li>
-													<a href="product2.html">Home Entertainment Systems</a>
-												</li>
-												<li>
-													<a href="product2.html">Headphones</a>
-												</li>
-												<li>
-													<a href="product2.html">Speakers</a>
-												</li>
-												<li>
-													<a href="product2.html">MP3, Media Players & Accessories</a>
-												</li>
-												<li>
-													<a href="product2.html">Audio & Video Accessories</a>
-												</li>
-												<li>
-													<a href="product2.html">Cameras</a>
-												</li>
-												<li>
-													<a href="product2.html">DSLR Cameras</a>
-												</li>
-												<li>
-													<a href="product2.html">Camera Accessories</a>
-												</li>
-											</ul>
-										</div>
-										<div class="col-sm-6 multi-gd-img">
-											<ul class="multi-column-dropdown">
-												<li>
-													<a href="product2.html">Musical Instruments</a>
-												</li>
-												<li>
-													<a href="product2.html">Gaming Consoles</a>
-												</li>
-												<li>
-													<a href="product2.html">All Electronics</a>
-												</li>
-												<li>
-													<a href="product2.html">Air Conditioners</a>
-												</li>
-												<li>
-													<a href="product2.html">Refrigerators</a>
-												</li>
-												<li>
-													<a href="product2.html">Washing Machines</a>
-												</li>
-												<li>
-													<a href="product2.html">Kitchen & Home Appliances</a>
-												</li>
-												<li>
-													<a href="product2.html">Heating & Cooling Appliances</a>
-												</li>
-												<li>
-													<a href="product2.html">All Appliances</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="about.html">About Us</a>
-						</li>
-						<li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link" href="product.html">New Arrivals</a>
-						</li>
-						<li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Pages
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="product.html">Product 1</a>
-								<a class="dropdown-item" href="product2.html">Product 2</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="single.html">Single Product 1</a>
-								<a class="dropdown-item" href="single2.html">Single Product 2</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="checkout.html">Checkout Page</a>
-								<a class="dropdown-item" href="payment.html">Payment Page</a>
-							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-	</div>
+	
 	<!-- //navigation -->
 
 	<!-- banner-2 -->
@@ -482,19 +248,36 @@ $row = mysqli_fetch_assoc($result);
 							if(isset($_POST['search']))
 							{
 								$searchTerm = mysqli_real_escape_string($conn, $_POST['my_input']); // sanitize the input
-								 $sql = "SELECT * FROM tbl_productdetail WHERE name LIKE '%$searchTerm%'";
+								 $sql = "SELECT * FROM tbl_productdetail WHERE pbrand LIKE '%$searchTerm%'";
 								 $result = mysqli_query($conn, $sql);
 							}
-if(!isset($_POST['search']))	
-{
-$sel_query="SELECT * from tbl_productdetail";
+							if(isset($_POST['oppo']))
+							{
+								 $sql = "SELECT * FROM tbl_productdetail WHERE pbrand LIKE 'oppo'";
+								 $result = mysqli_query($conn, $sql);
+							}
+							if(isset($_POST['samsung']))
+							{
+								 $sql = "SELECT * FROM tbl_productdetail WHERE pbrand LIKE 'samsung'";
+								 $result = mysqli_query($conn, $sql);
+							}
+							if(isset($_POST['lenovo']))
+							{
+								 $sql = "SELECT * FROM tbl_productdetail WHERE pbrand LIKE 'lenovo'";
+								 $result = mysqli_query($conn, $sql);
+							}
+							if(!isset($_POST['search']) && !isset($_POST['oppo']) && !isset($_POST['samsung']) && !isset($_POST['lenovo'])) {
+								$sel_query = "SELECT * from tbl_productdetail";
+								$result = mysqli_query($conn, $sel_query);
+							}
 
-$result = mysqli_query($conn,$sel_query);
-}
 while($row = mysqli_fetch_assoc($result)) {
 	if($row['status']==0)
 	{
  $a= '../login/images1/'.$row["pimage"];
+$name = $row['pbrand'];
+$color=$row['pcolour'];
+
 ?>
 								<div class="col-md-4 product-men">
 									<div class="men-pro-item simpleCart_shelfItem">
@@ -502,19 +285,44 @@ while($row = mysqli_fetch_assoc($result)) {
                                           <img src="<?php echo $a ?> " style="width: 150px; height:250px;">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="single.html" class="link-product-add-cart">Quick View</a>
+													
+												<a href="single.php?pid=<?php echo $row['pid']?>" class="link-product-add-cart">Quick View</a>
+
+													<!-- <a href="../web/single.html" class="link-product-add-cart">Quick View</a> -->
 												</div>
-											</div>
+																							</div>
 										</div>
+										<?php
+										$sql12 = "SELECT pname FROM tbl_checkout WHERE status = 1";
+										$result12 = mysqli_query($conn, $sql12);
+										while($row12 = mysqli_fetch_assoc($result12)){
+										$a=$row12['pname'];
+										if($row['pname']==$a)
+										{
+								       ?>
+										<span class="product-new-top">Hot Selling Product</span>
+										<?php
+										}}
+										?>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="single.html"><?php echo $row["pname"]; ?>
-                                       <?php echo $row["pcolour"]; ?></a>
+												<a href="single.html">
+											<?php  
+        $sql11 = "SELECT pcat_name FROM tbl_phonecategory WHERE pcat_id = $name";
+        $result11 = mysqli_query($conn, $sql11);
+        $row11 = mysqli_fetch_assoc($result11);
+        echo $row11['pcat_name']; ?>
+                                       <?php  
+        $sql13= "SELECT pscolour FROM tbl_phonesubcategory WHERE psc_id = $color";
+        $result13 = mysqli_query($conn, $sql13);
+        $row13 = mysqli_fetch_assoc($result13);
+        echo $row13['pscolour']; ?></a>
+									  <h3> <?php echo $row["pname"]; ?></h3>
 									   <!-- <a href="../login/cart.php?pid=<php echo $row['pid']?>">ADD TO CART</a> -->
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price"><?php echo $row["tprice"]; ?></span>
-												<del>$280.00</del>
+												<span class="item_price">$<?php echo $row["tprice"]; ?></span>
+												<del>$<?php echo $row["price"]; ?></del>
 											</div>
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 												<form action="#" method="post">
@@ -534,7 +342,7 @@ while($row = mysqli_fetch_assoc($result)) {
 															<a href="../login/cart.php?pid=<?php echo $row['pid']?>">ADD TO CART</a>  </button>
 
 														<!-- <button class="button btn"><a href="../login/cart.php?pid=<php echo $row['pid']?>">ADD TO CART</a></button> -->
-														<input type="submit" name="submit" value="Add to cart" class="button btn" />
+														<!-- <input type="submit" name="submit" value="Add to cart" class="button btn" /> -->
 													</fieldset>
 												</form>
 											</div>
@@ -553,216 +361,27 @@ while($row = mysqli_fetch_assoc($result)) {
 					</div>
 				</div>
 				<!-- //product left -->
-				<!-- product right -->
 				<div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
 					<div class="side-bar p-sm-4 p-3">
 						<div class="search-hotel border-bottom py-2">
 							<h3 class="agileits-sear-head mb-3">Brand</h3>
-							<form action="#" method="post">
-								<input type="search" placeholder="Search Brand..." name="search" required="">
-								<input type="submit" value=" ">
-							</form>
-							<div class="left-side py-2">
-								<ul>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Samsung</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Red Mi</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Apple</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Nexus</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Motorola</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Micromax</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Lenovo</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Oppo</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Sony</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">LG</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">One Plus</span>
-									</li>
-								</ul>
-							</div>
+							
+							<div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div>
+<nav class="yamm megamenu-horizontal" role="navigation">
+	<form method="POST">
+<li><button style="height:50px;width:200px" name="oppo" type="submit"><h3>oppo</h3></button></li>
+<li><button style="height:50px;width:200px" name="samsung" type="submit"><h3>Samsung</h3></button></li>
+<li><button style="height:50px;width:200px" name="lenovo" type="submit"><h3>Lenovo</h3></button></li>
+	</form>
+
+</nav>
+</div>
 						</div>
 						<!-- ram -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Ram</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Less than 512 MB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">512 MB - 1 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">1 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">2 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">3 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">5 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">6 GB</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">6 GB & Above</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //ram -->
-						<!-- price -->
-						<div class="range border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Price</h3>
-							<div class="w3l-range">
-								<ul>
-									<li>
-										<a href="#">Under $1,000</a>
-									</li>
-									<li class="my-1">
-										<a href="#">$1,000 - $5,000</a>
-									</li>
-									<li>
-										<a href="#">$5,000 - $10,000</a>
-									</li>
-									<li class="my-1">
-										<a href="#">$10,000 - $20,000</a>
-									</li>
-									<li>
-										<a href="#">$20,000 $30,000</a>
-									</li>
-									<li class="mt-1">
-										<a href="#">Over $30,000</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!-- //price -->
-						<!-- discounts -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Discount</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">5% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">10% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">20% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">30% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">50% or More</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">60% or More</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //discounts -->
-						<!-- offers -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Offers</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Exchange Offer</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">No Cost EMI</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Special Price</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //offers -->
-						<!-- delivery -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">Cash On Delivery</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Eligible for Cash On Delivery</span>
-								</li>
-							</ul>
-						</div>
-						<!-- //delivery -->
-						<!-- arrivals -->
-						<div class="left-side border-bottom py-2">
-							<h3 class="agileits-sear-head mb-3">New Arrivals</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Last 30 days</span>
-								</li>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Last 90 days</span>
-								</li>
-							</ul>
-						</div>
-						<div class="left-side py-2">
-							<h3 class="agileits-sear-head mb-3">Availability</h3>
-							<ul>
-								<li>
-									<input type="checkbox" class="checked">
-									<span class="span">Exclude Out of Stock</span>
-								</li>
-							</ul>
-						</div>
+						
 						<!-- //arrivals -->
 					</div>
+				<!-- product right -->
 					<!-- //product right -->
 				</div>
 			</div>
