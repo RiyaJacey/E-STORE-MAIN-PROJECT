@@ -47,7 +47,7 @@ session_start();
     <nav class="navbar header-nav navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
         
-            <a class="navbar-brand" href="admin.php">PRODUCTS WITH HIGH DEMAND</a>
+            <a class="navbar-brand" href="admin.php">PAYMENT DETAILS</a>
             <!-- <button class="btn-default" onclick="window.location.href='leavehist.php';">Leave History</button> </div> -->
             <!-- <nav class="nav navbar-right">
             <a class="nav-link active" href="#">Active</a>
@@ -70,7 +70,7 @@ session_start();
             
     </nav>
 
-    <h1>Products with the higest demand</h1>
+    <h1>PAYMENT DETAILS</h1>
 
     <div class="mycontainer">
 
@@ -80,16 +80,16 @@ session_start();
                       <th>#</th>
                       
                       <th>Name</th>
-                      <th>Brand</th>
-                      <!-- <th>Price</th> -->
-                      <!-- <th>Status</th>
-                      <th>Added On</th>      -->
+                      <th>Amount</th>
+                      <th>PaymentId</th>
+                      <th>Status</th>
+                      <th>Added On</th>     
                     
                   </thead>
                   <tbody>
                     <!-- loading all leave applications of the user -->
                     <?php
-                          $sql = mysqli_query($conn,"SELECT distinct  pname,pbrand FROM tbl_checkout where status=4 ");
+                          $sql = mysqli_query($conn,"SELECT * FROM tbl_payment ");
                           if($sql){
                             $numrow = mysqli_num_rows($sql);
                             if($numrow!=0){
@@ -101,16 +101,15 @@ session_start();
                                         ?>
                                         
                                        
-                                       <?php echo " <td>{$row1['pname']}</td>";?>
-                                       <?php echo " <td>{$row1['pbrand']}</td>";?>
-                                       <!-- <php echo "<td>{$row1['tamount']}</td>";?> -->
-                                       <!-- <php echo "<td>{$row1['payment_status']}</td>";?>
-                                       <php echo "<td>{$row1['added_on']}</td>";?> -->
+                                       <?php echo " <td>{$row1['name']}</td>";?>
+                                       <?php echo " <td>{$row1['amount']}</td>";?>
+                                       <?php echo "<td>{$row1['payment_id']}</td>";?>
+                                       <?php echo "<td>{$row1['payment_status']}</td>";?>
+                                       <?php echo "<td>{$row1['added_on']}</td>";?>
                                        
                     
-                     </tr>  <?php
-                                    $cnt++;   
-                                    }       
+                     </tr>  <?php $cnt++;
+                                         }       
                                     }
                                 }
                                 
